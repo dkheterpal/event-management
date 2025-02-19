@@ -4,10 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
-
-// use Illuminate\Database\Eloquent\Relations\HasMany;
-// use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 
 class Event extends Model
@@ -17,7 +15,9 @@ class Event extends Model
     protected $fillable = ['name', 'description', 'start_time', 'end_time', 'user_id'];
     public function user(): BelongsTo
     {
-        $this->belongsTo( User::class );
+        // $this->belongsTo( User::class );
+        return $this->belongsTo(User::class);
+
 
     }
 
