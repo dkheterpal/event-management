@@ -16,7 +16,9 @@ class EventController extends Controller
     {
         // return Event::all();
         // return EventResource::collection(Event::all());
-        return EventResource::collection(Event::with('user')->get());
+        // return EventResource::collection(Event::with('user')->get());
+        return EventResource::collection(Event::with('user')->paginate());
+
 
     }
 
