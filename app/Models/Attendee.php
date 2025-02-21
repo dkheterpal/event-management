@@ -19,6 +19,6 @@ class Attendee extends Model
 
     public function event(): BelongsTo
     {
-        $this->belongsTo(Event::class);
+        return $this->belongsTo(Event::class);
     }
 }
