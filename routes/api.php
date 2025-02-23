@@ -56,7 +56,8 @@ use Illuminate\Support\Facades\Route;
 Route::apiResource('events', EventController::class)->only(['index', 'show']);
 Route::apiResource('events.attendees', AttendeeController::class)->only(['index', 'show']);
 Route::post('/login', [AuthController::class, 'login']);
-
+Route::post('/logout', [AuthController::class,'logout'])
+    ->middleware('auth:sanctum');
 // 🔹 Protected routes (require authentication)
 Route::middleware(['auth:sanctum', 'throttle:api'])->group(function () {
     Route::apiResource('events', EventController::class)->only(['store', 'update', 'destroy']);
