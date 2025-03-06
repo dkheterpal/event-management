@@ -8,6 +8,8 @@ use App\Models\Event;
 use App\Models\Attendee;
 use App\Http\Traits\CanLoadRelationships;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+
 
 class AttendeeController extends Controller
 {
@@ -50,7 +52,7 @@ class AttendeeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display `the specified resource.
      */
     public function show(Event $event, Attendee $attendee)
     {
@@ -70,8 +72,9 @@ class AttendeeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $event, Attendee $attendee)
+    public function destroy(Event $event, Attendee $attendee)
     {
+        Gate::authorize('delete-attendee', [$event, $attendee]); // Use Gate::authorize()
         $attendee->delete();
         return response(status: 204);
     }
